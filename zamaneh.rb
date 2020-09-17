@@ -2,20 +2,20 @@
 class Zamaneh < Formula
   desc "Manage your working periods with ease"
   homepage ""
-  version "0.0.1"
+  version "0.0.2"
   bottle :unneeded
 
   if OS.mac?
-    url "https://github.com/1995parham/zamaneh/releases/download/v0.0.1/gosimac_0.0.1_darwin_amd64.tar.gz"
-    sha256 "7942ca4a4be60c158c153582eb597988cd3aa60bc310a80441aaa10f0cd9ab26"
+    url "https://github.com/1995parham/zamaneh/releases/download/v0.0.2/zamaneh_0.0.2_darwin_amd64.tar.gz"
+    sha256 "7c7de1ae3e55dd4c7e2695cb2089ccda5c5dba04a511679db7a6c9a7130a3ef6"
   elsif OS.linux?
     if Hardware::CPU.intel?
-      url "https://github.com/1995parham/zamaneh/releases/download/v0.0.1/gosimac_0.0.1_linux_amd64.tar.gz"
-      sha256 "38ed96492f4b0db165560c900f42b68de493480d9ac47cc2e65e24570a0d1bd5"
+      url "https://github.com/1995parham/zamaneh/releases/download/v0.0.2/zamaneh_0.0.2_linux_amd64.tar.gz"
+      sha256 "662e54ab37699675267f672a9db44d4b8bbea772c8d0d4d193813acde2ecbd28"
     end
   end
 
   def install
-    bin.install "gosimac"
+    bin.install "zamaneh"
   end
 end
