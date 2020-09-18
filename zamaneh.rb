@@ -2,16 +2,16 @@
 class Zamaneh < Formula
   desc "Manage your working periods with ease"
   homepage ""
-  version "0.0.3"
+  version "0.0.4"
   bottle :unneeded
 
   if OS.mac?
-    url "https://github.com/1995parham/zamaneh/releases/download/v0.0.3/zamaneh_0.0.3_darwin_amd64.tar.gz"
-    sha256 "26b5aec468f04fda5f21638fbe07b6d388a447e02b5ed935fbb1082051a9ab14"
+    url "https://github.com/1995parham/zamaneh/releases/download/v0.0.4/zamaneh_0.0.4_darwin_amd64.tar.gz"
+    sha256 "d721f820996111ad4c90b703a3ba251939f2b84d52385c1a64d50b86cf4cb96e"
   elsif OS.linux?
     if Hardware::CPU.intel?
-      url "https://github.com/1995parham/zamaneh/releases/download/v0.0.3/zamaneh_0.0.3_linux_amd64.tar.gz"
-      sha256 "52ea56a92b0987241e26f9d192f28f24b7abfd87ae25dac4768d3330a3c2bb3c"
+      url "https://github.com/1995parham/zamaneh/releases/download/v0.0.4/zamaneh_0.0.4_linux_amd64.tar.gz"
+      sha256 "0d99139862ba7305dca6574a57d00e58d61decda2901a6a9c94a70122056b1f5"
     end
   end
 
