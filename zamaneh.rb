@@ -7,11 +7,11 @@ class Zamaneh < Formula
 
   if OS.mac?
     url "https://github.com/1995parham/zamaneh/releases/download/v0.0.5/zamaneh_0.0.5_darwin_amd64.tar.gz"
-    sha256 "3ea1b681b567ec3bfa978830dfa5c6db6eb11ced55b3e0068aabfb704431d821"
+    sha256 "a3cbe443c8362415fe27073bcd3f45b6c9d791abaee48048ba7b059a48bbf4a2"
   elsif OS.linux?
     if Hardware::CPU.intel?
       url "https://github.com/1995parham/zamaneh/releases/download/v0.0.5/zamaneh_0.0.5_linux_amd64.tar.gz"
-      sha256 "9e47895814998921164f89c9cae63d306604dcd876262f9df7cba6354e7fd04c"
+      sha256 "e83a008fa43b006a54c58e11fe9dee5ebdb24cbbb71e29ecf3d5d3dbf4a8f646"
     end
   end
 
