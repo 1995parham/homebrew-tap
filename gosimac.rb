@@ -6,12 +6,12 @@ class Gosimac < Formula
   bottle :unneeded
 
   if OS.mac?
-    url "https://github.com/1995parham/gosimac/releases/download/v4.0.3/gosimac_4.0.3_darwin_amd64.tar.gz"
-    sha256 "071d0e96d67c795d7b5b4b0f35e64a8e1accaf81088a5c46a3fe59afa3646d42"
+    url "https://github.com/1995parham/gosimac/releases/download/v4.1.1/gosimac_4.1.1_darwin_amd64.tar.gz"
+    sha256 "d97c210726aa33973c5414c4ddcd6cd017c4f697ba0f299503b0d0de2a6353cd"
   elsif OS.linux?
     if Hardware::CPU.intel?
-      url "https://github.com/1995parham/gosimac/releases/download/v4.0.3/gosimac_4.0.3_linux_amd64.tar.gz"
-      sha256 "b74e4fa4c6afedb6fb8035f7bec984f4b6daa0408f270130bf45bee077c74b68"
+      url "https://github.com/1995parham/gosimac/releases/download/v4.1.1/gosimac_4.1.1_linux_amd64.tar.gz"
+      sha256 "a8e399597f0058c434d068916a6f4849559aabe3e4a94f531950dbfd4e015374"
     end
   end
 
