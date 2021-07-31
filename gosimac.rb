@@ -2,7 +2,7 @@
 class Gosimac < Formula
   desc "Fetch the wallpaper from Bings, Unsplash ..."
   homepage ""
-  version "4.0.3"
+  version "4.1.1"
   bottle :unneeded
 
   if OS.mac?
