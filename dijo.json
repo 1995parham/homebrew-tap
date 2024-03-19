@@ -1,0 +1,75 @@
+{
+  "name": "dijo",
+  "full_name": "dijo",
+  "tap": null,
+  "oldname": null,
+  "oldnames": [],
+  "aliases": [],
+  "versioned_formulae": [],
+  "desc": "scriptable, curses-based, digital habit tracker",
+  "license": "MIT",
+  "homepage": "https://github.com/nerdypepper/dijo",
+  "versions": {
+    "stable": "0.2.7",
+    "head": null,
+    "bottle": false
+  },
+  "urls": {
+    "stable": {
+      "url": "https://github.com/nerdypepper/dijo/archive/refs/tags/v0.2.7.tar.gz",
+      "tag": null,
+      "revision": null,
+      "using": null,
+      "checksum": "d82ce7adb19e5206e014f0a895fe3ed361f32088048116e9d33aea37f3cccb00"
+    }
+  },
+  "revision": 0,
+  "version_scheme": 0,
+  "bottle": {},
+  "pour_bottle_only_if": null,
+  "keg_only": false,
+  "keg_only_reason": null,
+  "options": [],
+  "build_dependencies": [
+    "rust"
+  ],
+  "dependencies": [],
+  "test_dependencies": [],
+  "recommended_dependencies": [],
+  "optional_dependencies": [],
+  "uses_from_macos": [],
+  "uses_from_macos_bounds": [],
+  "requirements": [],
+  "conflicts_with": [],
+  "conflicts_with_reasons": [],
+  "link_overwrite": [],
+  "caveats": null,
+  "installed": [
+    {
+      "version": "0.2.7",
+      "used_options": [],
+      "built_as_bottle": false,
+      "poured_from_bottle": false,
+      "time": 1703302616,
+      "runtime_dependencies": [],
+      "installed_as_dependency": false,
+      "installed_on_request": true
+    }
+  ],
+  "linked_keg": "0.2.7",
+  "pinned": false,
+  "outdated": false,
+  "deprecated": false,
+  "deprecation_date": null,
+  "deprecation_reason": null,
+  "disabled": false,
+  "disable_date": null,
+  "disable_reason": null,
+  "post_install_defined": false,
+  "service": null,
+  "tap_git_head": null,
+  "ruby_source_path": null,
+  "ruby_source_checksum": {
+    "sha256": "c8309b4eb3b96b4eed93a89d6f14f0b68829ac8654b48579f6598b21cb8a8ccf"
+  }
+}
