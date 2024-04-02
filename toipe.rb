@@ -1,4 +1,4 @@
-class Dijo < Formula
+class Toipe < Formula
   desc "yet another typing test, but crab flavoured"
   homepage "https://github.com/Samyak2/toipe"
   sha256 "31e4c7679487425254ad90bbc4d14a9bd55af6c6a20cce0b3f8eaa52fffe6bf7"
