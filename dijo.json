@@ -2,7 +2,6 @@
   "name": "dijo",
   "full_name": "dijo",
   "tap": null,
-  "oldname": null,
   "oldnames": [],
   "aliases": [],
   "versioned_formulae": [],
@@ -50,7 +49,7 @@
       "used_options": [],
       "built_as_bottle": false,
       "poured_from_bottle": false,
-      "time": 1703302616,
+      "time": 1718708581,
       "runtime_dependencies": [],
       "installed_as_dependency": false,
       "installed_on_request": true

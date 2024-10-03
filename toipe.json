@@ -1,25 +1,25 @@
 {
-  "name": "gosimac",
-  "full_name": "gosimac",
+  "name": "toipe",
+  "full_name": "toipe",
   "tap": null,
   "oldnames": [],
   "aliases": [],
   "versioned_formulae": [],
-  "desc": "Fetch the wallpaper from Bings, Unsplash ...",
-  "license": null,
-  "homepage": "https://github.com/1995parham/gosimac",
+  "desc": "yet another typing test, but crab flavoured",
+  "license": "MIT",
+  "homepage": "https://github.com/Samyak2/toipe",
   "versions": {
-    "stable": "4.1.1",
+    "stable": "0.5.0",
     "head": null,
     "bottle": false
   },
   "urls": {
     "stable": {
-      "url": "https://github.com/1995parham/gosimac/releases/download/v4.1.1/gosimac_4.1.1_darwin_amd64.tar.gz",
+      "url": "https://github.com/Samyak2/toipe/archive/refs/tags/v0.5.0.tar.gz",
       "tag": null,
       "revision": null,
       "using": null,
-      "checksum": "d97c210726aa33973c5414c4ddcd6cd017c4f697ba0f299503b0d0de2a6353cd"
+      "checksum": "31e4c7679487425254ad90bbc4d14a9bd55af6c6a20cce0b3f8eaa52fffe6bf7"
     }
   },
   "revision": 0,
@@ -29,7 +29,9 @@
   "keg_only": false,
   "keg_only_reason": null,
   "options": [],
-  "build_dependencies": [],
+  "build_dependencies": [
+    "rust"
+  ],
   "dependencies": [],
   "test_dependencies": [],
   "recommended_dependencies": [],
@@ -56,6 +58,6 @@
   "tap_git_head": null,
   "ruby_source_path": null,
   "ruby_source_checksum": {
-    "sha256": "aa6ac90668cd4cc50eb3c0a97ce1ff7de4e45043b43a629ae30fcca203d51293"
+    "sha256": "b51d40c5dd0ee2a87fd97291f4be053e8e470def5c3c8fa5d5d4dc85a60fcb3c"
   }
 }

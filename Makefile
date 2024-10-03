@@ -1,6 +1,6 @@
 formulae=$(subst ,,$(wildcard *.rb))
 
-all :: update info
+all :: info
 
 info ::
 	for formula in $(formulae); do \
