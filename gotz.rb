@@ -15,6 +15,6 @@ class Gotz < Formula
   end
 
   def install
-    bin.install "gotz"
+    bin.install "gotz_darwin_arm64" => "gotz"
   end
 end
