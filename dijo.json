@@ -19,7 +19,7 @@
       "tag": null,
       "revision": null,
       "using": null,
-      "checksum": "ea4dbcdc8a24bb37bbf22ffe4e54338550911fe519d4626563ea38d3381bc425"
+      "checksum": "b36f2a393e44fba54deac66d99e69e1f770e846ed8f0aa4b06ff8d82a0b2a5b2"
     }
   },
   "revision": 0,
@@ -58,6 +58,6 @@
   "tap_git_head": null,
   "ruby_source_path": null,
   "ruby_source_checksum": {
-    "sha256": "6f3beeaea109a4efde153f0dad837dd6d1dfe2fa91dccd4cd1df9cf4282f3d55"
+    "sha256": "e1feed7417cf892459fa22ce1e320ccafa52446f838ae0be594400a72bfeacc5"
   }
 }
