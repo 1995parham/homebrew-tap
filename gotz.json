@@ -48,14 +48,16 @@
   "deprecated": false,
   "deprecation_date": null,
   "deprecation_reason": null,
+  "deprecation_replacement": null,
   "disabled": false,
   "disable_date": null,
   "disable_reason": null,
+  "disable_replacement": null,
   "post_install_defined": false,
   "service": null,
   "tap_git_head": null,
   "ruby_source_path": null,
   "ruby_source_checksum": {
-    "sha256": "45ff480081568eba7d357c891106b72af78a17954d7125379c7981822c927e3c"
+    "sha256": "842d35b2ec399f3cb07892deedf4911cc467b6e1ee4a40befc70d626f528597f"
   }
 }
