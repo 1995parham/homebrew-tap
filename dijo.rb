@@ -8,7 +8,7 @@ class Dijo < Formula
   url "https://github.com/1995parham/dijo/releases/download/#{version}/dijo-aarch64-apple"
 
   def install
-    bin.install "dijo-aarach64-apple" => "dijo"
+    bin.install "dijo-aarch64-apple" => "dijo"
   end
 
   test do
