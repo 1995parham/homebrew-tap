@@ -9,21 +9,24 @@
   "license": "MIT",
   "homepage": "https://github.com/nerdypepper/dijo",
   "versions": {
-    "stable": "v0.2.9",
+    "stable": "v0.3.2",
     "head": null,
     "bottle": false
   },
   "urls": {
     "stable": {
-      "url": "https://github.com/1995parham/dijo/releases/download/v0.2.9/dijo-aarch64-apple",
+      "url": "https://github.com/1995parham/dijo/releases/download/v0.3.2/dijo-aarch64-apple",
       "tag": null,
       "revision": null,
       "using": null,
-      "checksum": "b36f2a393e44fba54deac66d99e69e1f770e846ed8f0aa4b06ff8d82a0b2a5b2"
+      "checksum": "bc8bbdf78a157fc468c45e4d72e995a14dfba9872bbb5a48b87aa1e2a8284a96"
     }
   },
   "revision": 0,
   "version_scheme": 0,
+  "autobump": true,
+  "no_autobump_message": null,
+  "skip_livecheck": false,
   "bottle": {},
   "pour_bottle_only_if": null,
   "keg_only": false,
@@ -41,23 +44,36 @@
   "conflicts_with_reasons": [],
   "link_overwrite": [],
   "caveats": null,
-  "installed": [],
-  "linked_keg": null,
+  "installed": [
+    {
+      "version": "v0.2.9",
+      "used_options": [],
+      "built_as_bottle": false,
+      "poured_from_bottle": false,
+      "time": 1749199869,
+      "runtime_dependencies": [],
+      "installed_as_dependency": false,
+      "installed_on_request": true
+    }
+  ],
+  "linked_keg": "v0.2.9",
   "pinned": false,
-  "outdated": false,
+  "outdated": true,
   "deprecated": false,
   "deprecation_date": null,
   "deprecation_reason": null,
-  "deprecation_replacement": null,
+  "deprecation_replacement_formula": null,
+  "deprecation_replacement_cask": null,
   "disabled": false,
   "disable_date": null,
   "disable_reason": null,
-  "disable_replacement": null,
+  "disable_replacement_formula": null,
+  "disable_replacement_cask": null,
   "post_install_defined": false,
   "service": null,
   "tap_git_head": null,
   "ruby_source_path": null,
   "ruby_source_checksum": {
-    "sha256": "dcd6b86c8ec71c30dad559d6e02302f242f721a43d61d5d130e038bf0578dd42"
+    "sha256": "185d2755cd264b5ba254207a7290df84da281a5ca1abc7f549778cae6020b994"
   }
 }
