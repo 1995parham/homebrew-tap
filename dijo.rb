@@ -9,6 +9,7 @@ class Dijo < Formula
 
   def install
     bin.install "dijo-aarch64-apple" => "dijo"
+    # man1.install "dijo.1"
   end
 
   test do
