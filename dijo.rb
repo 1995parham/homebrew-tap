@@ -2,14 +2,14 @@ class Dijo < Formula
   desc "scriptable, curses-based, digital habit tracker"
   homepage "https://github.com/1995parham/dijo"
   license "MIT"
-  version "v0.4.4"
+  version "v0.4.5"
 
-  sha256 "fd32a6ed71795ebab2ede1b6fd749c04048f980cafea7826c00e5f60d1bcb1b0"
-  url "https://github.com/1995parham/dijo/releases/download/#{version}/dijo-aarch64-apple"
+  sha256 "3ae7f98f83b5c0df0ca1a752107cd91c0cd55c3628b47ffe5de92074e0bdc36c"
+  url "https://github.com/1995parham/dijo/releases/download/#{version}/dijo-aarch64-apple-darwin.tar.gz"
 
   def install
-    bin.install "dijo-aarch64-apple" => "dijo"
-    # man1.install "dijo.1"
+    bin.install "package/dijo" => "dijo"
+    man1.install "package/dijo.1" => "dijo.1"
   end
 
   test do
