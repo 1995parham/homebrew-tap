@@ -2,9 +2,9 @@ class Dijo < Formula
   desc "scriptable, curses-based, digital habit tracker"
   homepage "https://github.com/1995parham/dijo"
   license "MIT"
-  version "v0.4.1"
+  version "v0.4.2"
 
-  sha256 "955fcf82d4b570c7e75aa2ee280e317a6d5d52e26b82140dfb7a5804e32b7b17"
+  sha256 "415359122faddeee5adca5f8ca3969e3b92b698514a360f26dd38a4dfb544f5e"
   url "https://github.com/1995parham/dijo/releases/download/#{version}/dijo-aarch64-apple"
 
   def install
