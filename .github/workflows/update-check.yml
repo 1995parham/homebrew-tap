@@ -14,15 +14,13 @@ jobs:
         formula:
           - name: dijo
             repo: 1995parham/dijo
-          - name: gosimac
-            repo: 1995parham/gosimac
           - name: gotz
-            repo: 1995parham/gotz
+            repo: merschformann/gotz
           - name: toipe
-            repo: 1995parham/toipe
+            repo: Samyak2/toipe
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Get latest release
         id: latest
