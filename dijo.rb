@@ -2,15 +2,15 @@ class Dijo < Formula
   desc "scriptable, curses-based, digital habit tracker"
   homepage "https://github.com/1995parham/dijo"
   license "MIT"
-  version "v1.0.0"
+  version "v1.1.0"
 
   on_arm do
-    sha256 "b71ffcb22ef628869f3e8956c195aab02a6db35662be26565a82d859b8b444f9"
+    sha256 "f53aa56b3a7b6cc294d336751da84381d788b5117286f78982db7bd51ed2b697"
     url "https://github.com/1995parham/dijo/releases/download/#{version}/dijo-aarch64-apple-darwin.tar.gz"
   end
 
   on_intel do
-    sha256 "a3a4957eca5fbe07908db8aea4996620675d4064c7764182267f12e68551adc4"
+    sha256 "4718cddd9735797ca55cb33a5a45bc107906a6c6d7f4fa613fc4e09dd7d1911f"
     url "https://github.com/1995parham/dijo/releases/download/#{version}/dijo-x86_64-apple-darwin.tar.gz"
   end
 
