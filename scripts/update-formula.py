@@ -23,9 +23,11 @@ SHA_RE = re.compile(r'^(\s*sha256\s+")([0-9a-f]+)(".*)$')
 
 
 def sha256_of(url: str) -> str:
+    if not url.startswith("https://"):
+        raise ValueError(f"refusing to fetch non-https url: {url}")
     print(f"    downloading {url}", file=sys.stderr)
     h = hashlib.sha256()
-    with urllib.request.urlopen(url) as resp:  # noqa: S310 - trusted release URLs
+    with urllib.request.urlopen(url) as resp:
         for chunk in iter(lambda: resp.read(1 << 16), b""):
             h.update(chunk)
     return h.hexdigest()
