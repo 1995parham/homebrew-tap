@@ -1,4 +1,4 @@
-name: Check for Updates
+name: Update Formulas
 
 on:
   schedule:
@@ -6,10 +6,15 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
-  check-updates:
+  update:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         formula:
           - name: dijo
@@ -27,71 +32,36 @@ jobs:
         uses: actions/github-script@v9
         with:
           script: |
-            const { data: release } = await github.rest.repos.getLatestRelease({
-              owner: '${{ matrix.formula.repo }}'.split('/')[0],
-              repo: '${{ matrix.formula.repo }}'.split('/')[1]
-            });
+            const [owner, repo] = '${{ matrix.formula.repo }}'.split('/');
+            const { data: release } = await github.rest.repos.getLatestRelease({ owner, repo });
             core.setOutput('version', release.tag_name);
             core.setOutput('url', release.html_url);
 
-      - name: Check current version
-        id: current
+      - name: Update formula
+        id: update
         run: |
-          CURRENT_VERSION=$(grep -oP 'version\s+"?\K[^"]+' ${{ matrix.formula.name }}.rb | head -1)
-          echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
-
-      - name: Compare versions
-        id: compare
-        run: |
-          LATEST="${{ steps.latest.outputs.version }}"
-          CURRENT="${{ steps.current.outputs.version }}"
-
-          # Remove 'v' prefix if present for comparison
-          LATEST_CLEAN="${LATEST#v}"
-          CURRENT_CLEAN="${CURRENT#v}"
-
-          if [ "$LATEST_CLEAN" != "$CURRENT_CLEAN" ]; then
-            echo "outdated=true" >> $GITHUB_OUTPUT
-            echo "Formula ${{ matrix.formula.name }} is outdated: $CURRENT -> $LATEST"
+          python3 scripts/update-formula.py "${{ matrix.formula.name }}.rb" "${{ steps.latest.outputs.version }}"
+          if git diff --quiet -- "${{ matrix.formula.name }}.rb"; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
-            echo "outdated=false" >> $GITHUB_OUTPUT
-            echo "Formula ${{ matrix.formula.name }} is up to date: $CURRENT"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Create issue if outdated
-        if: steps.compare.outputs.outdated == 'true'
-        uses: actions/github-script@v9
+      - name: Open pull request
+        if: steps.update.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
         with:
-          script: |
-            const title = `Update ${{ matrix.formula.name }} to ${{ steps.latest.outputs.version }}`;
-            const body = `A new release of ${{ matrix.formula.name }} is available.
+          commit-message: "Update ${{ matrix.formula.name }} to ${{ steps.latest.outputs.version }}"
+          branch: "update/${{ matrix.formula.name }}"
+          delete-branch: true
+          title: "Update ${{ matrix.formula.name }} to ${{ steps.latest.outputs.version }}"
+          body: |
+            Automated update of `${{ matrix.formula.name }}` to **${{ steps.latest.outputs.version }}**.
 
-            **Current version:** ${{ steps.current.outputs.version }}
-            **Latest version:** ${{ steps.latest.outputs.version }}
+            The `version` line was bumped and every `sha256` recomputed from the
+            release artifacts by `scripts/update-formula.py`.
 
-            Release URL: ${{ steps.latest.outputs.url }}
-
-            Please update the formula to use the latest release.`;
-
-            // Check if issue already exists
-            const { data: issues } = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              labels: 'formula-update'
-            });
-
-            const existingIssue = issues.find(issue => issue.title === title);
-
-            if (!existingIssue) {
-              await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title: title,
-                body: body,
-                labels: ['formula-update', 'automated']
-              });
-              console.log('Created new issue for update');
-            } else {
-              console.log('Issue already exists, skipping creation');
-            }
+            Release notes: ${{ steps.latest.outputs.url }}
+          labels: |
+            formula-update
+            automated
