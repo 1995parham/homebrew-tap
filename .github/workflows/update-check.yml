@@ -65,3 +65,29 @@ jobs:
           labels: |
             formula-update
             automated
+
+  # A tap whose formulas are all current produces no commits, and GitHub
+  # disables scheduled workflows after 60 days of repository inactivity — so
+  # this update check switches itself off precisely when it has been doing its
+  # job. Refresh the clock with an empty commit, but only as the deadline nears
+  # so routine weeks stay free of noise.
+  keepalive:
+    runs-on: ubuntu-latest
+    needs: update
+    if: always()
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Refresh repository activity before the 60-day cutoff
+        run: |
+          age=$(( ( $(date +%s) - $(git log -1 --format=%ct) ) / 86400 ))
+          echo "last commit: ${age} day(s) ago"
+          if [ "$age" -lt 50 ]; then
+            echo "under the 50-day threshold, nothing to do"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "chore: keep the scheduled update check alive"
+          git push origin HEAD:main
