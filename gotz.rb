@@ -28,4 +28,8 @@ class Gotz < Formula
   def install
     bin.install "gotz"
   end
+
+  test do
+    assert_match version.to_s, shell_output("#{bin}/gotz --version")
+  end
 end
