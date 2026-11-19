@@ -1,15 +1,22 @@
 #!/usr/bin/env python3
 """Update a Homebrew formula to a new version.
 
-Rewrites the `version` line and recomputes every `sha256` by re-downloading the
-matching `url` (with `#{version}` interpolated). Formulas that build from source
-and have no `sha256` (e.g. toipe) get only their `version` bumped.
+A formula states its version in one of two ways, and the script handles both:
+
+- a `version` line, with `#{version}` interpolated in each `url` (dijo). The
+  script rewrites the `version` line.
+- the version written directly in each `url` (gotz, toipe), which is what
+  `brew audit --strict` demands when Homebrew can read the version from the URL.
+  The script rewrites the version inside each `url`.
+
+In both cases it then recomputes every `sha256` by downloading the matching
+`url`.
 
 Usage:
     update-formula.py <formula.rb> <new-version>
 
 `<new-version>` may be given with or without a leading `v`; the script keeps the
-prefix style already used by the formula's `version` line.
+prefix style already used by the formula.
 """
 
 import hashlib
@@ -20,6 +27,9 @@ import urllib.request
 VERSION_RE = re.compile(r'^(\s*version\s+")([^"]+)(".*)$', re.MULTILINE)
 URL_RE = re.compile(r'^\s*url\s+"([^"]+)"')
 SHA_RE = re.compile(r'^(\s*sha256\s+")([0-9a-f]+)(".*)$')
+# The version inside a release URL: a path segment (`/v1.2.3/`) or the name of a
+# source archive (`/v1.2.3.tar.gz`).
+URL_VERSION_RE = re.compile(r"/v?(\d+(?:\.\d+)+)(?=/|\.tar\.gz|\.tgz|\.zip)")
 
 
 def sha256_of(url: str) -> str:
@@ -43,25 +53,45 @@ def main() -> int:
         text = f.read()
 
     m = VERSION_RE.search(text)
-    if not m:
-        print(f"error: no `version` line found in {path}", file=sys.stderr)
-        return 1
+    if m:
+        old_stored = m.group(2)
+        # Preserve the formula's own prefix convention (dijo stores "v1.1.0").
+        stored = ("v" if old_stored.startswith("v") else "") + new_version.lstrip("v")
+        if stored == old_stored:
+            print(f"{path}: already at {old_stored}, nothing to do")
+            return 0
 
-    old_stored = m.group(2)
-    # Preserve the formula's own prefix convention (dijo stores "v1.1.0",
-    # gotz stores "0.1.15").
-    stored = ("v" if old_stored.startswith("v") else "") + new_version.lstrip("v")
-    if stored == old_stored:
-        print(f"{path}: already at {old_stored}, nothing to do")
-        return 0
+        print(f"{path}: {old_stored} -> {stored}")
+        text = VERSION_RE.sub(
+            lambda mm: mm.group(1) + stored + mm.group(3), text, count=1
+        )
+        lines = text.split("\n")
+    else:
+        # No `version` line: the version is written in the urls themselves.
+        lines = text.split("\n")
+        found = next(
+            (
+                um
+                for ln in lines
+                if URL_RE.match(ln) and (um := URL_VERSION_RE.search(ln))
+            ),
+            None,
+        )
+        if not found:
+            print(f"error: no version found in {path}", file=sys.stderr)
+            return 1
+        old, new = found.group(1), new_version.lstrip("v")
+        if old == new:
+            print(f"{path}: already at {old}, nothing to do")
+            return 0
 
-    print(f"{path}: {old_stored} -> {stored}")
-    text = VERSION_RE.sub(lambda mm: mm.group(1) + stored + mm.group(3), text, count=1)
+        print(f"{path}: {old} -> {new}")
+        lines = [ln.replace(old, new) if URL_RE.match(ln) else ln for ln in lines]
+        stored = new
 
     # Recompute each sha256 by re-downloading its matching url. Handle both line
     # orderings (sha256 before url, as in dijo; url before sha256, as in gotz)
     # by pairing each url with the nearest sha256 line within the same block.
-    lines = text.split("\n")
     url_idxs = [i for i, ln in enumerate(lines) if URL_RE.match(ln)]
     sha_idxs = [i for i, ln in enumerate(lines) if SHA_RE.match(ln)]
     used: set[int] = set()
