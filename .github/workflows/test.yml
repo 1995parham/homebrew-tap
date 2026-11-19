@@ -27,7 +27,7 @@ jobs:
 
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@main
 
       - name: Test formula syntax
         run: brew audit --strict --online ${{ matrix.formula }}
